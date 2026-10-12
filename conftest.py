@@ -1,21 +1,21 @@
-import pytest
 import time
 import allure
 import os
 
+import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from faker import Faker
 
 from models.student import Student
 from models.enums import Gender, Hobbies, StateCity
+
 fake = Faker()
 
 
 @pytest.fixture
 def driver():
     options = Options()
-
     if os.getenv("CI") == "true":
         options.add_argument("--headless=new")
         options.add_argument("--window-size=1920,1080")
@@ -47,7 +47,6 @@ def student() -> Student:
         city=StateCity.RAJASTHAN.cities[0],
     )
 
-#делает скриншет
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
     outcome = yield
@@ -60,6 +59,5 @@ def pytest_runtest_makereport(item, call):
                 name="screenshot",
                 attachment_type=allure.attachment_type.PNG,
             )
-
 
 

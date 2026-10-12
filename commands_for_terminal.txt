@@ -6,11 +6,11 @@ pip install allure-pytest
 pip install -r requirements.txt из файла
 pip freeze > requirements.txt в файл
 
-allure generate allure-results -o allure-report --clean
-allure open allure-report
 allure serve allure-results
 
-allure
+allure generate allure-results -o allure-report --clean
+allure open allure-report
+
 pytest
 pytest -v
 pytest -s
